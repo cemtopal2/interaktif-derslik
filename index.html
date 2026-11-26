@@ -1445,7 +1445,7 @@
                             <!-- Labels placed safely above horizontal hand line (y=150) -->
                             <text id="pastLabel" x="214" y="132" fill="#10b981" font-size="14" font-weight="800" opacity="0.45" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="3">PAST</text>
                             <text id="toLabel" x="86" y="132" fill="#f59e0b" font-size="14" font-weight="800" opacity="0.45" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="3">TO</text>
-                            <text id="quarterTag" x="150" y="116" fill="#059669" font-size="11" font-weight="800" opacity="0" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="3"></text>
+                            <text id="quarterTag" x="150" y="192" fill="#059669" font-size="11" font-weight="800" opacity="0" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="3"></text>
 
                             <g id="clockMarkers">
                             <line x1="150.00" y1="31.00" x2="150.00" y2="18.00" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
@@ -1551,7 +1551,7 @@
                         </div>
 
                         <div id="resultBox" class="result-box past-mode">
-                            <span id="ruleBadge" class="badge badge-past">QUARTER PAST (ÇEYREK GEÇİYOR)</span>
+                            <span id="ruleBadge" class="badge badge-past">A QUARTER PAST (ÇEYREK GEÇİYOR)</span>
                             <div id="enOutput" class="en-phrase">It's a quarter past three.</div>
                             <div id="trOutput" class="tr-phrase">Saat üçü çeyrek geçiyor.</div>
                             <div id="grammarOutput" class="grammar-note">
@@ -2003,7 +2003,7 @@
             en = "It's a quarter past " + numWords[h12] + ".";
             tr = "Saat " + trHoursAccusative[h12] + " çeyrek geçiyor.";
             type = "past";
-            badgeText = "QUARTER PAST (ÇEYREK GEÇİYOR)";
+            badgeText = "A QUARTER PAST (ÇEYREK GEÇİYOR)";
             note = "15. dakikada &quot;fifteen&quot; yerine <strong>&quot;a quarter past&quot;</strong> kalıbı kullanılır.";
         } else if (m === 30) {
             en = "It's half past " + numWords[h12] + ".";
@@ -2015,7 +2015,7 @@
             en = "It's a quarter to " + numWords[nextH12] + ".";
             tr = "Saat " + trHoursDative[nextH12] + " çeyrek var.";
             type = "to";
-            badgeText = "QUARTER TO (ÇEYREK VAR)";
+            badgeText = "A QUARTER TO (ÇEYREK VAR)";
             note = "45. dakikada bir sonraki saate (" + numWords[nextH12] + ") çeyrek kaldığı için <strong>&quot;a quarter to&quot;</strong> kullanılır.";
         } else if (m < 30) {
             var isMult5 = (m % 5 === 0);
@@ -2128,6 +2128,7 @@
             toSlice.setAttribute('opacity', '0.55');
             pastLabel.setAttribute('opacity', '0.35');
             toLabel.setAttribute('opacity', '0.35');
+            quarterTag.setAttribute('y', '192');
             quarterTag.setAttribute('opacity', '1');
             quarterTag.setAttribute('fill', '#4f46e5');
             quarterTag.textContent = "O'CLOCK";
@@ -2138,7 +2139,7 @@
             toSlice.setAttribute('fill', '#fffbeb');
             toSlice.setAttribute('opacity', '0.45');
             pastLabel.setAttribute('opacity', '1');
-            toLabel.setAttribute('opacity', '0.3');
+            toLabel.setAttribute('opacity', '0');
 
             var endDeg = m * 6;
             var radEnd = (endDeg - 90) * Math.PI / 180;
@@ -2149,10 +2150,12 @@
             arcEl.setAttribute('d', 'M 150 15 A 135 135 0 ' + largeArc + ' 1 ' + ax.toFixed(2) + ' ' + ay.toFixed(2));
 
             if (m === 15) {
+                quarterTag.setAttribute('y', '192');
                 quarterTag.setAttribute('opacity', '1');
                 quarterTag.setAttribute('fill', '#059669');
-                quarterTag.textContent = "QUARTER PAST";
+                quarterTag.textContent = "A QUARTER PAST";
             } else if (m === 30) {
+                quarterTag.setAttribute('y', '116');
                 quarterTag.setAttribute('opacity', '1');
                 quarterTag.setAttribute('fill', '#059669');
                 quarterTag.textContent = "HALF PAST";
@@ -2164,7 +2167,7 @@
             pastSlice.setAttribute('opacity', '0.45');
             toSlice.setAttribute('fill', '#fde68a');
             toSlice.setAttribute('opacity', '0.85');
-            pastLabel.setAttribute('opacity', '0.3');
+            pastLabel.setAttribute('opacity', '0');
             toLabel.setAttribute('opacity', '1');
 
             var startDeg = m * 6;
@@ -2176,9 +2179,10 @@
             arcEl.setAttribute('d', 'M ' + sx.toFixed(2) + ' ' + sy.toFixed(2) + ' A 135 135 0 ' + largeArcTo + ' 1 150 15');
 
             if (m === 45) {
+                quarterTag.setAttribute('y', '192');
                 quarterTag.setAttribute('opacity', '1');
                 quarterTag.setAttribute('fill', '#d97706');
-                quarterTag.textContent = "QUARTER TO";
+                quarterTag.textContent = "A QUARTER TO";
             } else {
                 quarterTag.setAttribute('opacity', '0');
             }
